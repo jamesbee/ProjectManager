@@ -1,5 +1,7 @@
 import com.jamstudio.TCPtalker.Talker;
+import com.jamstudio.util.JSonUtil;
 import com.jamstudio.util.SampleLogger;
+import com.pm.Data.RequestInfo;
 
 import java.util.Date;
 import java.util.Map;
@@ -9,11 +11,8 @@ public class TestJson{
 
     public static void main(String[] args){
         Talker tk = new Talker();
-        SampleData testData = new SampleData();
-        String data;
-        SampleLogger.LogAsOK(data = tk.QueryByJSON(JSonUtil.objectToJson(testData)));
-        Map JSON = JSonUtil.jsonToMap(data);
-        System.out.println(JSON.get("QID").getClass());
+        String data = tk.QueryByJSON(new RequestInfo().toJsonString());
+        SampleLogger.LogAsOK(data);
     }
 }
 
